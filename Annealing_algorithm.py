@@ -38,7 +38,7 @@ def annealing(To, factor, iterations, coords):
         print(i, 'cost = ', curr_Energy)
         To = To*factor
 
-        city1, city2 = np.random.randint(0, len(coords[0]), size=2)
+        city1, city2, city3, city4, city5, city6 = np.random.randint(0, len(coords[0]), size=6)
 
         hold_coords = coords.copy()
 
@@ -47,6 +47,18 @@ def annealing(To, factor, iterations, coords):
         hold_coords[1][city1] = hold_coords[1][city2]
         hold_coords[0][city2] = temp1[0]
         hold_coords[1][city2] = temp1[1]
+
+        temp2 = [hold_coords[0][city3], hold_coords[1][city3]]
+        hold_coords[0][city3] = hold_coords[0][city4]
+        hold_coords[1][city3] = hold_coords[1][city4]
+        hold_coords[0][city4] = temp2[0]
+        hold_coords[1][city4] = temp2[1]
+
+        temp3 = [hold_coords[0][city5], hold_coords[1][city5]]
+        hold_coords[0][city5] = hold_coords[0][city6]
+        hold_coords[1][city5] = hold_coords[1][city6]
+        hold_coords[0][city6] = temp3[0]
+        hold_coords[1][city6] = temp3[1]
 
 
         new_Energy = total_energy(hold_coords)
@@ -76,9 +88,9 @@ if __name__ == '__main__':
 
     cities = np.array([cities_x, cities_y])
 
-    it = 20000
-    curr_temp = 300
-    factor = 0.99
+    it = 50000
+    curr_temp = 200
+    factor = 0.999
 
     new = annealing(curr_temp, factor, it, cities)
 
