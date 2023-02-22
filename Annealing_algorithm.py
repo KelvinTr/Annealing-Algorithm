@@ -75,7 +75,7 @@ def annealing101(To, factor, iterations, coords):
     for i in range(iterations):
         print(i, 'cost = ', curr_Energy)
         
-        edge1, edge2 = np.random.randint(1, len(coords[0]), size=2)
+        edge1, edge2 = np.random.randint(0, len(coords[0]), size=2)
 
         hold_coords = coords.copy()
 
@@ -130,14 +130,16 @@ if __name__ == '__main__':
 
 
     it = 100000
-    curr_temp = 200
-    factor = 0.999
+    curr_temp = 300
+    factor = 0.99
+    curr_temp101 = 200
+    factor101 = 0.999
 
-    #new = annealing(curr_temp, factor, it, cities20)
-    new = annealing101(curr_temp, factor, it, cities101)
+    new20 = annealing(curr_temp, factor, it, cities20)
+    new101 = annealing101(curr_temp101, factor101, it, cities101)
 
-    #plot(new, [0, 1, 0 ,1])
-    plot(new, [0, 70 ,0, 80])
+    plot(new20, [0, 1, 0 ,1])
+    plot(new101, [0, 70 ,0, 80])
 
 
 
